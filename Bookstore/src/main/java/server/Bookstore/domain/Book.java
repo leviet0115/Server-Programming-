@@ -1,12 +1,37 @@
 package server.Bookstore.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Book {
 	
-	protected String title;
-	protected String author;
-	protected String year;
-	protected String isbn;
-	protected double price;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	private String title, author, year, isbn;
+	private double price;
+	
+	public Book() {};
+	
+	public Book(String title, String author, String year, String isbn, double price) {
+		this.title = title;
+		this.author = author;
+		this.year = year;
+		this.isbn = isbn;
+		this.price = price;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -36,5 +61,8 @@ public class Book {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public String toString() {
+		return id + ", " + title +  ", " + author +  ", " + year +  ", " + isbn +  ", " + price + " euros." ;
 	}
 }
